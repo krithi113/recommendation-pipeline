@@ -1,0 +1,3 @@
+2026-11-06 22:19:23,267 | INFO | __main__ | Downloading https://files.grouplens.org/datasets/movielens/ml-100k.zip
+2026-11-06 22:19:36,590 | INFO | __main__ | Extracted to /home/krithika/dm4ml/recommendation-pipeline/data/raw/ml-100k
+2026-11-06 22:19:36,718 | INFO | __main__ | Ingested users=943 items=1682 interactions=100000

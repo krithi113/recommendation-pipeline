@@ -1,0 +1,10 @@
+data:
+  url: https://files.grouplens.org/datasets/movielens/ml-100k.zip
+  seed: 42
+paths:
+  raw: data/raw
+  processed: data/processed
+  features: data/features
+  errors: data/errors
+  models: models
+  reports: reports
