@@ -8,3 +8,10 @@ paths:
   errors: data/errors
   models: models
   reports: reports
+validation:
+  use_faulty_data: true
+  rating_min: 1
+  rating_max: 5
+  age_min: 5
+  age_max: 100
+  min_valid_timestamp: 631152000   # 1990-01-01

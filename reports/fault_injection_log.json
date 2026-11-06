@@ -1,0 +1,21 @@
+{
+  "interactions": {
+    "bad_dtype": 10,
+    "missing_rating": 20,
+    "invalid_rating": 30,
+    "invalid_timestamp": 30,
+    "orphan_user": 20,
+    "orphan_item": 20,
+    "duplicate": 50
+  },
+  "users": {
+    "invalid_age": 4,
+    "missing_age": 3,
+    "invalid_gender": 3,
+    "duplicate": 3
+  },
+  "items": {
+    "missing_title": 4,
+    "duplicate": 3
+  }
+}

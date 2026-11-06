@@ -1,0 +1,8 @@
+item_id,title,release_date,video_release_date,imdb_url,unknown,action,adventure,animation,childrens,comedy,crime,documentary,drama,fantasy,film_noir,horror,musical,mystery,romance,sci_fi,thriller,war,western,error_reason
+3001,,01-Jan-1995,,http://us.imdb.com/M/title-exact?Toy%20Story%20(1995),0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,missing_title
+3002,,01-Jan-1995,,http://us.imdb.com/M/title-exact?GoldenEye%20(1995),0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,missing_title
+3003,,01-Jan-1995,,http://us.imdb.com/M/title-exact?Four%20Rooms%20(1995),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,missing_title
+3004,,01-Jan-1995,,http://us.imdb.com/M/title-exact?Get%20Shorty%20(1995),0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,missing_title
+1394,Swept from the Sea (1997),01-Jan-1997,,http://us.imdb.com/M/title-exact?Swept+from+the+Sea+(1997),0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,duplicate
+744,Michael Collins (1996),11-Oct-1996,,http://us.imdb.com/M/title-exact?Michael%20Collins%20(1996),0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,duplicate
+1606,Deceiver (1997),01-Jan-1997,,http://us.imdb.com/M/title-exact?Liar+(1997),0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,duplicate

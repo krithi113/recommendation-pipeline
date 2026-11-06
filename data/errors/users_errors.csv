@@ -1,0 +1,14 @@
+user_id,age,gender,occupation,zip_code,error_reason
+2001,-5,M,student,00000,invalid_age
+2002,150,M,student,00000,invalid_age
+2003,0,M,student,00000,invalid_age
+2004,999,M,student,00000,invalid_age
+2005,,M,student,00000,missing_age
+2006,,M,student,00000,missing_age
+2007,,M,student,00000,missing_age
+2008,30,X,student,00000,invalid_gender
+2009,30,X,student,00000,invalid_gender
+2010,30,X,student,00000,invalid_gender
+97,43,M,artist,98006,duplicate
+266,62,F,administrator,78756,duplicate
+811,40,F,educator,73013,duplicate

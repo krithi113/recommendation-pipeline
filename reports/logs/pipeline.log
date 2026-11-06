@@ -1,3 +1,9 @@
 2026-11-06 22:19:23,267 | INFO | __main__ | Downloading https://files.grouplens.org/datasets/movielens/ml-100k.zip
 2026-11-06 22:19:36,590 | INFO | __main__ | Extracted to /home/krithika/dm4ml/recommendation-pipeline/data/raw/ml-100k
 2026-11-06 22:19:36,718 | INFO | __main__ | Ingested users=943 items=1682 interactions=100000
+2026-11-06 22:58:41,567 | INFO | __main__ | Fault injection done: users=956 items=1689 interactions=100050 (written to /home/krithika/dm4ml/recommendation-pipeline/data/raw/with_faults)
+2026-11-06 22:58:42,105 | INFO | __main__ | Validating tables from /home/krithika/dm4ml/recommendation-pipeline/data/raw/with_faults
+2026-11-06 22:58:42,687 | INFO | __main__ | users: in=956 valid=943 rejected=13 reasons={'invalid_age': 4, 'missing_age': 3, 'invalid_gender': 3, 'duplicate': 3}
+2026-11-06 22:58:42,693 | INFO | __main__ | items: in=1689 valid=1682 rejected=7 reasons={'missing_title': 4, 'duplicate': 3}
+2026-11-06 22:58:42,706 | INFO | __main__ | interactions: in=100050 valid=99870 rejected=180 reasons={'duplicate': 50, 'invalid_rating': 30, 'invalid_timestamp': 30, 'orphan_item': 20, 'missing_rating': 20, 'orphan_user': 20, 'bad_dtype': 10}
+2026-11-06 22:58:42,706 | INFO | __main__ | Validation report written to /home/krithika/dm4ml/recommendation-pipeline/reports/validation_report.md
