@@ -19,3 +19,13 @@ split:
   test_fraction: 0.2   # latest 20% of interactions (by time) become the test set
 features:
   version: "1.0"
+models:
+  svd:
+    n_components: 20
+    random_state: 42
+evaluation:
+  k: 10
+  relevance_threshold: 4   # test ratings >= 4 count as relevant
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: recommendation-pipeline

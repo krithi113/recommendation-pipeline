@@ -14,3 +14,28 @@
 2026-11-07 13:11:34,384 | INFO | __main__ | User-item matrix (751, 1615), sparsity=0.9341
 2026-11-07 13:37:44,354 | INFO | __main__ | Features built (v1.0, as of 1998-03-07 02:20:24+00:00): users=943 items=1682 interactions=79897
 2026-11-07 13:37:44,355 | INFO | __main__ | Cold users=192, cold items=67, catalog written to reports/feature_catalog.md
+2026-11-07 16:11:20,583 | INFO | __main__ | Trained popularity baseline (run 24b58d94675f48d4a3180b7c4ace8271)
+2026-11-07 16:11:20,769 | INFO | __main__ | Trained SVD (20 factors, explained variance 0.239, run dbe4f427dc4845b0b4a52f0831bb271f)
+2026-11-07 16:11:24,639 | INFO | __main__ | Evaluating on 95 users, 2863 warm test rows (K=10, relevant = rating >= 4)
+2026-11-07 16:11:24,725 | INFO | __main__ | popularity_baseline: P@10=0.1105 R@10=0.0867 NDCG@10=0.1381 coverage=0.046 diversity=0.749 RMSE=1.037 MAE=0.834
+2026-11-07 16:11:24,811 | INFO | __main__ | svd_matrix_factorization: P@10=0.1200 R@10=0.1285 NDCG@10=0.1781 coverage=0.156 diversity=0.725 RMSE=1.150 MAE=0.925
+2026-11-07 18:50:51,296 | INFO | src.ingestion.ingest | Dataset already downloaded at /home/krithika/dm4ml/recommendation-pipeline/data/raw/ml-100k - skipping download
+2026-11-07 18:50:51,428 | INFO | src.ingestion.ingest | Ingested users=943 items=1682 interactions=100000
+2026-11-07 18:50:51,597 | INFO | src.ingestion.inject_faults | Fault injection done: users=956 items=1689 interactions=100050 (written to /home/krithika/dm4ml/recommendation-pipeline/data/raw/with_faults)
+2026-11-07 18:50:51,604 | INFO | src.validation.validate | Validating tables from /home/krithika/dm4ml/recommendation-pipeline/data/raw/with_faults
+2026-11-07 18:50:52,272 | INFO | src.validation.validate | users: in=956 valid=943 rejected=13 reasons={'invalid_age': 4, 'missing_age': 3, 'invalid_gender': 3, 'duplicate': 3}
+2026-11-07 18:50:52,278 | INFO | src.validation.validate | items: in=1689 valid=1682 rejected=7 reasons={'missing_title': 4, 'duplicate': 3}
+2026-11-07 18:50:52,291 | INFO | src.validation.validate | interactions: in=100050 valid=99870 rejected=180 reasons={'duplicate': 50, 'invalid_rating': 30, 'invalid_timestamp': 30, 'orphan_item': 20, 'missing_rating': 20, 'orphan_user': 20, 'bad_dtype': 10}
+2026-11-07 18:50:52,291 | INFO | src.validation.validate | Validation report written to /home/krithika/dm4ml/recommendation-pipeline/reports/validation_report.md
+2026-11-07 18:50:52,324 | INFO | src.preparation.prepare | Imputed release_year (median) for 1 item(s) with missing release date
+2026-11-07 18:50:52,365 | INFO | src.preparation.prepare | Prepared: users=943 items=1682 interactions=99870
+2026-11-07 18:50:52,467 | INFO | src.transformation.transform | Split at 1998-03-07 02:20:24+00:00: train=79897 test=19973
+2026-11-07 18:50:52,467 | INFO | src.transformation.transform | Cold-start in test: 192 users and 67 items not seen in train
+2026-11-07 18:50:52,467 | INFO | src.transformation.transform | User-item matrix (751, 1615), sparsity=0.9341
+2026-11-07 18:50:52,577 | INFO | src.features.build_features | Features built (v1.0, as of 1998-03-07 02:20:24+00:00): users=943 items=1682 interactions=79897
+2026-11-07 18:50:52,577 | INFO | src.features.build_features | Cold users=192, cold items=67, catalog written to reports/feature_catalog.md
+2026-11-07 18:50:53,382 | INFO | src.training.train | Trained popularity baseline (run a5c2a68c197747b6842904754b5657cf)
+2026-11-07 18:50:53,560 | INFO | src.training.train | Trained SVD (20 factors, explained variance 0.239, run 9f2a841dc72144ff9a4e885db5ec9bdf)
+2026-11-07 18:50:54,319 | INFO | src.evaluation.evaluate | Evaluating on 95 users, 2863 warm test rows (K=10, relevant = rating >= 4)
+2026-11-07 18:50:54,368 | INFO | src.evaluation.evaluate | popularity_baseline: P@10=0.1105 R@10=0.0867 NDCG@10=0.1381 coverage=0.046 diversity=0.749 RMSE=1.037 MAE=0.834
+2026-11-07 18:50:54,442 | INFO | src.evaluation.evaluate | svd_matrix_factorization: P@10=0.1200 R@10=0.1285 NDCG@10=0.1781 coverage=0.156 diversity=0.725 RMSE=1.150 MAE=0.925

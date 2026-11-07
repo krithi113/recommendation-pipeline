@@ -3,3 +3,5 @@ __pycache__/
 mlruns/
 data/raw/ml-100k/
 *.zip
+mlflow.db
+mlruns/

@@ -1,0 +1,8 @@
+{
+  "k": 10,
+  "relevance_threshold": 4,
+  "test_rows": 19973,
+  "test_rows_evaluated_warm": 2863,
+  "users_evaluated": 95,
+  "test_users_cold_skipped": 194
+}
