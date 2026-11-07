@@ -17,3 +17,5 @@ validation:
   min_valid_timestamp: 631152000   # 1990-01-01
 split:
   test_fraction: 0.2   # latest 20% of interactions (by time) become the test set
+features:
+  version: "1.0"

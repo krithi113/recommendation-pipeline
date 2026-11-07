@@ -1,0 +1,11 @@
+{
+  "feature_version": "1.0",
+  "as_of": "1998-03-07 02:20:24+00:00",
+  "built_at": "2026-11-07T13:37:44",
+  "rows": {
+    "user_features": 943,
+    "item_features": 1682,
+    "interaction_features": 79897
+  },
+  "source": "train.parquet (training period only)"
+}

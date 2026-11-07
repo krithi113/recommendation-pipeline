@@ -1,0 +1,68 @@
+"""Feature registry: the single source of truth for every feature (used to build the catalog)."""
+
+GENRES = ["unknown", "action", "adventure", "animation", "childrens", "comedy",
+          "crime", "documentary", "drama", "fantasy", "film_noir", "horror",
+          "musical", "mystery", "romance", "sci_fi", "thriller", "war", "western"]
+
+
+def _f(name, entity, dtype, description, computation, source, used_by, columns=None):
+    return {"feature": name, "entity": entity, "dtype": dtype, "description": description,
+            "computation": computation, "source": source, "used_by": used_by,
+            "columns": columns or [name]}
+
+
+FEATURES = [
+    # ---------------- user features ----------------
+    _f("user_age", "user", "int", "Age of the user in years", "copied from clean_users",
+       "clean_users", "Analysis / hybrid models"),
+    _f("user_age_group", "user", "category", "Age band (<18, 18-24, 25-34, ...)",
+       "pd.cut on user_age", "clean_users", "Analysis / hybrid models"),
+    _f("user_gender", "user", "category", "Gender (M/F)", "copied from clean_users",
+       "clean_users", "Analysis / hybrid models"),
+    _f("user_occupation", "user", "category", "Occupation of the user",
+       "copied from clean_users", "clean_users", "Analysis / hybrid models"),
+    _f("user_activity_count", "user", "int", "Number of ratings given by the user in the training period",
+       "count of train interactions per user", "train", "Cold-start rule, analysis"),
+    _f("user_avg_rating", "user", "float", "Average rating given by the user (global mean if no history)",
+       "mean of train rating per user", "train", "SVD model (mean-centering)"),
+    _f("user_rating_std", "user", "float", "Standard deviation of the user's ratings (0 if one rating)",
+       "std of train rating per user", "train", "Analysis / hybrid models"),
+    _f("user_days_since_last_interaction", "user", "float",
+       "Days between the user's last training interaction and the split cutoff (NaN if no history)",
+       "(cutoff - max(interaction_time)) in days", "train", "Analysis / hybrid models"),
+    _f("user_preferred_genre", "user", "category",
+       "Genre the user rated 4+ most often (all ratings if none rated 4+)",
+       "argmax of genre counts over liked items", "train + clean_items", "Report analysis"),
+    _f("user_is_cold", "user", "bool", "True if the user has no interactions in the training period",
+       "user_activity_count == 0", "train", "Fallback to popularity"),
+    # ---------------- item features ----------------
+    _f("item_release_year", "item", "int", "Release year of the item (median imputed if missing)",
+       "year of release_date", "clean_items", "Analysis / hybrid models"),
+    _f("item_age_years", "item", "int", "Age of the item at the split cutoff",
+       "cutoff year - release year (min 0)", "clean_items", "Analysis / hybrid models"),
+    _f("item_n_genres", "item", "int", "Number of genres the item belongs to",
+       "sum of genre flags", "clean_items", "Analysis / hybrid models"),
+    _f("item_popularity_count", "item", "int", "Number of ratings the item received in training",
+       "count of train interactions per item", "train", "Popularity baseline"),
+    _f("item_avg_rating", "item", "float", "Average rating of the item (global mean if never rated)",
+       "mean of train rating per item", "train", "Analysis / hybrid models"),
+    _f("item_popularity_score", "item", "float", "Popularity count scaled to 0-1",
+       "count / max count", "train", "Analysis / hybrid models"),
+    _f("item_popularity_rank", "item", "int", "Rank by popularity (1 = most rated; ties share a rank)",
+       "rank of count, descending", "train", "Analysis / hybrid models"),
+    _f("item_is_cold", "item", "bool", "True if the item has no interactions in the training period",
+       "item_popularity_count == 0", "train", "Excluded from recommendations"),
+    _f("genre_<name>", "item", "int (0/1)", "One flag per genre (19 columns, e.g. genre_action)",
+       "copied from clean_items", "clean_items", "Diversity metric",
+       columns=[f"genre_{g}" for g in GENRES]),
+    # ---------------- interaction features ----------------
+    _f("interaction_recency_days", "user-item", "float", "Days between the interaction and the cutoff",
+       "(cutoff - interaction_time) in days", "train", "Analysis / time-decay weighting"),
+    _f("rating_minus_user_avg", "user-item", "float", "Rating minus the user's average rating",
+       "rating - user_avg_rating", "train", "Analysis / hybrid models"),
+    _f("rating_minus_item_avg", "user-item", "float", "Rating minus the item's average rating",
+       "rating - item_avg_rating", "train", "Analysis / hybrid models"),
+    _f("item_in_preferred_genre", "user-item", "int (0/1)",
+       "1 if the item belongs to the user's preferred genre", "genre flag of user_preferred_genre",
+       "train + clean_items", "Analysis / hybrid models"),
+]

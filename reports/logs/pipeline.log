@@ -12,3 +12,5 @@
 2026-11-07 13:11:34,384 | INFO | __main__ | Split at 1998-03-07 02:20:24+00:00: train=79897 test=19973
 2026-11-07 13:11:34,384 | INFO | __main__ | Cold-start in test: 192 users and 67 items not seen in train
 2026-11-07 13:11:34,384 | INFO | __main__ | User-item matrix (751, 1615), sparsity=0.9341
+2026-11-07 13:37:44,354 | INFO | __main__ | Features built (v1.0, as of 1998-03-07 02:20:24+00:00): users=943 items=1682 interactions=79897
+2026-11-07 13:37:44,355 | INFO | __main__ | Cold users=192, cold items=67, catalog written to reports/feature_catalog.md
