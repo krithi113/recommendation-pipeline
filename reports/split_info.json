@@ -1,0 +1,14 @@
+{
+  "cutoff_timestamp": 889237224,
+  "cutoff_time_utc": "1998-03-07 02:20:24+00:00",
+  "train_rows": 79897,
+  "test_rows": 19973,
+  "test_users": 301,
+  "test_users_not_in_train": 192,
+  "test_items_not_in_train": 67,
+  "matrix_shape": [
+    751,
+    1615
+  ],
+  "matrix_sparsity": 0.9341
+}

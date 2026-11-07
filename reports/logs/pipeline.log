@@ -7,3 +7,8 @@
 2026-11-06 22:58:42,693 | INFO | __main__ | items: in=1689 valid=1682 rejected=7 reasons={'missing_title': 4, 'duplicate': 3}
 2026-11-06 22:58:42,706 | INFO | __main__ | interactions: in=100050 valid=99870 rejected=180 reasons={'duplicate': 50, 'invalid_rating': 30, 'invalid_timestamp': 30, 'orphan_item': 20, 'missing_rating': 20, 'orphan_user': 20, 'bad_dtype': 10}
 2026-11-06 22:58:42,706 | INFO | __main__ | Validation report written to /home/krithika/dm4ml/recommendation-pipeline/reports/validation_report.md
+2026-11-07 13:11:33,774 | INFO | __main__ | Imputed release_year (median) for 1 item(s) with missing release date
+2026-11-07 13:11:33,821 | INFO | __main__ | Prepared: users=943 items=1682 interactions=99870
+2026-11-07 13:11:34,384 | INFO | __main__ | Split at 1998-03-07 02:20:24+00:00: train=79897 test=19973
+2026-11-07 13:11:34,384 | INFO | __main__ | Cold-start in test: 192 users and 67 items not seen in train
+2026-11-07 13:11:34,384 | INFO | __main__ | User-item matrix (751, 1615), sparsity=0.9341
