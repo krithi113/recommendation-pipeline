@@ -34,21 +34,6 @@ set PYTHONUTF8=1
 python dags\recommendation_flow.py
 ```
 
-**Windows (PowerShell)**
-
-```powershell
-git clone https://github.com/krithi113/recommendation-pipeline.git
-cd recommendation-pipeline
-py -3.11 -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-
-$env:PYTHONUTF8 = "1"
-python dags\recommendation_flow.py
-```
-
-If PowerShell blocks activation, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, or use Command Prompt.
-
 The pipeline was run from a fresh clone on Ubuntu and on Windows with identical results.
 
 Optional UIs (use separate terminals, each with the virtual environment activated):
