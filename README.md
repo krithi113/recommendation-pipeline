@@ -34,6 +34,20 @@ set PYTHONUTF8=1
 python dags\recommendation_flow.py
 ```
 
+**Windows (PowerShell)**
+
+```powershell
+git clone https://github.com/krithi113/recommendation-pipeline.git
+cd recommendation-pipeline
+py -3.11 -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+$env:PYTHONUTF8 = "1"
+python dags\recommendation_flow.py
+```
+
+If PowerShell blocks activation, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, or use Command Prompt.
 
 The pipeline was run from a fresh clone on Ubuntu and on Windows with identical results.
 
@@ -98,6 +112,25 @@ reports/                     validation report, feature catalog, model results, 
 - **No leakage:** split is by time; the code asserts `max(train.ts) <= cutoff < min(test.ts)`. Features, popularity and the matrix use train rows only.
 - **Evaluation protocol:** warm users and items only (cold-start is reported, not hidden); an item is relevant if test rating >= 4; metrics are averaged over users with at least one relevant test item.
 - **Feature store:** the registry in `src/features/feature_definitions.py` drives both the data and the catalog, and an assertion keeps them in sync.
+
+## Process: how a run works
+
+1. **Start:** `python dags/recommendation_flow.py` starts the Prefect flow. Each stage is a task that receives the previous task's result, so Prefect runs them in the right order and retries ingestion if the download fails.
+2. **Raw data:** the MovieLens files are downloaded once and converted to `data/raw/users.csv`, `items.csv` and `interactions.csv`. A seeded step then injects documented faults into a copy in `data/raw/with_faults/`, because MovieLens itself is clean.
+3. **Validation:** each table is checked for missing values, wrong types, invalid ratings and timestamps, duplicates and orphan references. Good rows go to `data/processed/valid_*.parquet`, bad rows go to `data/errors/` with the reason, and `reports/validation_report.md` compares what was found with what was injected.
+4. **Preparation and transformation:** valid rows are cleaned and standardised, then split by time into train and test. User activity, item popularity and the user-item matrix are built from the training rows only.
+5. **Features:** user, item and interaction features are written to `data/features/` through a feature store, with the catalog generated in `reports/feature_catalog.md`.
+6. **Training and evaluation:** the popularity baseline and the SVD model are trained and logged to MLflow, then evaluated at K = 10. Results are written to `reports/model_results.md` and logged to the same MLflow runs.
+7. **Where to look afterwards:** `reports/` holds every report, `models/` the saved models, `mlflow.db` the tracking data, and `reports/logs/pipeline.log` the full log.
+
+## Evidence and reports
+
+- [`reports/evidence.md`](reports/evidence.md): each requirement mapped to its proof, with the screenshots.
+- [`reports/validation_report.md`](reports/validation_report.md): data validation results.
+- [`reports/feature_catalog.md`](reports/feature_catalog.md): feature catalog table.
+- [`reports/model_comparison.md`](reports/model_comparison.md): model comparison and interpretation.
+- [`reports/model_results.md`](reports/model_results.md): the results table.
+- `reports/screenshots/`: Prefect run and MLflow runs and comparison.
 
 ## Results (K = 10)
 
