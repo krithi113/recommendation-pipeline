@@ -16,7 +16,7 @@ This page maps each assignment requirement to the file or screenshot that proves
 | Orchestration workflow file | `dags/recommendation_flow.py` (Prefect flow `recommendation-pipeline`) |
 | Screenshot of a successful run | Section 3 below |
 | Experiment tracking (MLflow) | Section 3 below |
-| Final report (2-3 pages) | `reports/report.docx` and the PDF submitted on Taxila |
+| Final report (2-3 pages) | `reports/2025ag05333_DM4ML_Assignment2_Report.pdf` (and .docx) and the PDF submitted on Taxila |
 
 ## 2. Evidence per stage (from the pipeline log)
 
@@ -37,21 +37,38 @@ Rejected rows by reason (users / items / interactions) are listed in `reports/va
 
 All screenshots are in `reports/screenshots/`.
 
-**Prefect: successful run of the orchestration flow.** All 8 task runs finished in state Completed, in dependency order.
+**Prefect: successful run of the orchestration flow.** All 8 task runs finished in state Completed, in dependency order (Windows run, flow run `radical-earthworm`, 14 Nov 2026).
 
-![Prefect run](screenshots/prefect_run.png)
+![Prefect flow run](screenshots/prefect-flow-run.png)
+
+![Prefect task runs](screenshots/task-runs-consolidated.png)
+
+**Stage-level task runs (Prefect Logs tab).**
+
+| Stage | Screenshot |
+|---|---|
+| 1. Ingestion | ![1](screenshots/1-ingest-data.png) |
+| 1b. Fault injection | ![2](screenshots/2-inject-faults.png) |
+| 2. Validation | ![3](screenshots/3-validate-data.png) |
+| 3. Preparation | ![4](screenshots/4-prepare-data.png) |
+| 3b. Transformation | ![5](screenshots/5-transform-and-split.png) |
+| 4. Feature management | ![6](screenshots/6-build-features.png) |
+| 5. Model training | ![7](screenshots/7-train-models.png) |
+| 6. Evaluation | ![8](screenshots/8-evaluate-models.png) |
+
+Flow logs: ![logs 1](screenshots/prefect-logs-1.png) ![logs 2](screenshots/prefect-logs-2.png)
 
 **MLflow: popularity baseline run.** Parameters and metrics (precision@10, recall@10, ndcg@10, coverage, diversity, RMSE, MAE) are logged.
 
-![MLflow popularity run](screenshots/mlflow_popularity.png.png)
+![MLflow popularity run](screenshots/mlflow_popularity.png)
 
 **MLflow: SVD run.** Same metrics, plus the explained variance of the latent factors.
 
-![MLflow SVD run](screenshots/mlflow_svd_run.png.png)
+![MLflow SVD run](screenshots/mlflow_svd_run.png)
 
 **MLflow: comparison of the two runs.** Parameters and metrics side by side.
 
-![MLflow comparison](screenshots/mlflow_compare.png.png)
+![MLflow comparison](screenshots/mlflow_compare.png)
 
 ## 4. Reproducibility
 

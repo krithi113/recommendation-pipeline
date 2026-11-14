@@ -115,7 +115,7 @@ reports/                     validation report, feature catalog, model results, 
 - [`reports/feature_catalog.md`](reports/feature_catalog.md): feature catalog table.
 - [`reports/model_comparison.md`](reports/model_comparison.md): model comparison and interpretation.
 - [`reports/model_results.md`](reports/model_results.md): the results table.
-- `reports/screenshots/`: Prefect run and MLflow runs and comparison.
+- `reports/screenshots/`: Prefect flow runs stage level and MLflow runs and comparison.
 
 ## Results (K = 10)
 
