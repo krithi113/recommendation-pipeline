@@ -7,22 +7,46 @@ ingestion -> validation -> preparation -> transformation -> feature management -
 
 ## Quick start
 
+Requires Python 3.11 and git. The first run downloads MovieLens 100K, so it needs an internet connection.
+
+**Linux / macOS**
+
 ```bash
-git clone <this-repo-url> && cd recommendation-pipeline
-python3.11 -m venv .venv && source .venv/bin/activate     # or: uv venv --python 3.11
+git clone https://github.com/krithi113/recommendation-pipeline.git
+cd recommendation-pipeline
+python3.11 -m venv .venv
+source .venv/bin/activate                  # or: uv venv --python 3.11
 pip install -r requirements.txt
 
-python dags/recommendation_flow.py          # runs the whole pipeline once (downloads data on first run)
+python dags/recommendation_flow.py         # runs the whole pipeline once
 ```
 
-Optional UIs (separate terminals):
+**Windows (Command Prompt)**
 
-```bash
-mlflow ui --backend-store-uri sqlite:///mlflow.db          # http://127.0.0.1:5000
-prefect server start                                       # http://127.0.0.1:4200
-export PREFECT_API_URL=http://127.0.0.1:4200/api           # in the terminal that runs the flow
-python dags/recommendation_flow.py --serve                 # daily 02:00 schedule
+```bat
+git clone https://github.com/krithi113/recommendation-pipeline.git
+cd recommendation-pipeline
+py -3.11 -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+set PYTHONUTF8=1
+python dags\recommendation_flow.py
 ```
+
+
+The pipeline was run from a fresh clone on Ubuntu and on Windows with identical results.
+
+Optional UIs (use separate terminals, each with the virtual environment activated):
+
+| Step | Linux / macOS | Windows (Command Prompt) |
+|---|---|---|
+| MLflow UI (http://127.0.0.1:5000) | `mlflow ui --backend-store-uri sqlite:///mlflow.db` | `mlflow ui --backend-store-uri sqlite:///mlflow.db` |
+| Prefect UI (http://127.0.0.1:4200) | `prefect server start` | `prefect server start` |
+| Point the flow at it | `export PREFECT_API_URL=http://127.0.0.1:4200/api` | `set PREFECT_API_URL=http://127.0.0.1:4200/api` |
+| Run with the daily 02:00 schedule | `python dags/recommendation_flow.py --serve` | `python dags\recommendation_flow.py --serve` |
+
+Without a running Prefect server, the flow starts a temporary one and stops it when the run ends, so the run link in the log will not open afterwards.
 
 Each stage can also be run alone, in order:
 

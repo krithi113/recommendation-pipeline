@@ -39,3 +39,44 @@
 2026-11-07 18:50:54,319 | INFO | src.evaluation.evaluate | Evaluating on 95 users, 2863 warm test rows (K=10, relevant = rating >= 4)
 2026-11-07 18:50:54,368 | INFO | src.evaluation.evaluate | popularity_baseline: P@10=0.1105 R@10=0.0867 NDCG@10=0.1381 coverage=0.046 diversity=0.749 RMSE=1.037 MAE=0.834
 2026-11-07 18:50:54,442 | INFO | src.evaluation.evaluate | svd_matrix_factorization: P@10=0.1200 R@10=0.1285 NDCG@10=0.1781 coverage=0.156 diversity=0.725 RMSE=1.150 MAE=0.925
+2026-11-14 17:01:01,825 | INFO | src.ingestion.ingest | Downloading https://files.grouplens.org/datasets/movielens/ml-100k.zip
+2026-11-14 17:01:25,018 | INFO | src.ingestion.ingest | Extracted to C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\data\raw\ml-100k
+2026-11-14 17:01:25,245 | INFO | src.ingestion.ingest | Ingested users=943 items=1682 interactions=100000
+2026-11-14 17:01:25,485 | INFO | src.ingestion.inject_faults | Fault injection done: users=956 items=1689 interactions=100050 (written to C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\data\raw\with_faults)
+2026-11-14 17:01:25,498 | INFO | src.validation.validate | Validating tables from C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\data\raw\with_faults
+2026-11-14 17:01:26,646 | INFO | src.validation.validate | users: in=956 valid=943 rejected=13 reasons={'invalid_age': 4, 'missing_age': 3, 'invalid_gender': 3, 'duplicate': 3}
+2026-11-14 17:01:26,656 | INFO | src.validation.validate | items: in=1689 valid=1682 rejected=7 reasons={'missing_title': 4, 'duplicate': 3}
+2026-11-14 17:01:26,686 | INFO | src.validation.validate | interactions: in=100050 valid=99870 rejected=180 reasons={'duplicate': 50, 'invalid_rating': 30, 'invalid_timestamp': 30, 'orphan_item': 20, 'missing_rating': 20, 'orphan_user': 20, 'bad_dtype': 10}
+2026-11-14 17:01:26,688 | INFO | src.validation.validate | Validation report written to C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\reports\validation_report.md
+2026-11-14 17:01:26,867 | INFO | src.preparation.prepare | Imputed release_year (median) for 1 item(s) with missing release date
+2026-11-14 17:01:26,944 | INFO | src.preparation.prepare | Prepared: users=943 items=1682 interactions=99870
+2026-11-14 17:01:27,098 | INFO | src.transformation.transform | Split at 1998-03-07 02:20:24+00:00: train=79897 test=19973
+2026-11-14 17:01:27,098 | INFO | src.transformation.transform | Cold-start in test: 192 users and 67 items not seen in train
+2026-11-14 17:01:27,098 | INFO | src.transformation.transform | User-item matrix (751, 1615), sparsity=0.9341
+2026-11-14 17:01:27,286 | INFO | src.features.build_features | Features built (v1.0, as of 1998-03-07 02:20:24+00:00): users=943 items=1682 interactions=79897
+2026-11-14 17:01:27,287 | INFO | src.features.build_features | Cold users=192, cold items=67, catalog written to reports/feature_catalog.md
+2026-11-14 17:01:34,084 | INFO | src.training.train | Trained popularity baseline (run 71462821c26e4d85abf7fb1691f8bad4)
+2026-11-14 17:01:34,269 | INFO | src.training.train | Trained SVD (20 factors, explained variance 0.239, run 5e8d46cfc51c48529f3dda4814950d3f)
+2026-11-14 17:01:35,242 | INFO | src.evaluation.evaluate | Evaluating on 95 users, 2863 warm test rows (K=10, relevant = rating >= 4)
+2026-11-14 17:01:35,307 | INFO | src.evaluation.evaluate | popularity_baseline: P@10=0.1105 R@10=0.0867 NDCG@10=0.1381 coverage=0.046 diversity=0.749 RMSE=1.037 MAE=0.834
+2026-11-14 17:01:35,402 | INFO | src.evaluation.evaluate | svd_matrix_factorization: P@10=0.1200 R@10=0.1285 NDCG@10=0.1781 coverage=0.156 diversity=0.725 RMSE=1.150 MAE=0.925
+2026-11-14 17:05:09,851 | INFO | src.ingestion.ingest | Dataset already downloaded at C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\data\raw\ml-100k - skipping download
+2026-11-14 17:05:10,050 | INFO | src.ingestion.ingest | Ingested users=943 items=1682 interactions=100000
+2026-11-14 17:05:10,290 | INFO | src.ingestion.inject_faults | Fault injection done: users=956 items=1689 interactions=100050 (written to C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\data\raw\with_faults)
+2026-11-14 17:05:10,308 | INFO | src.validation.validate | Validating tables from C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\data\raw\with_faults
+2026-11-14 17:05:11,225 | INFO | src.validation.validate | users: in=956 valid=943 rejected=13 reasons={'invalid_age': 4, 'missing_age': 3, 'invalid_gender': 3, 'duplicate': 3}
+2026-11-14 17:05:11,234 | INFO | src.validation.validate | items: in=1689 valid=1682 rejected=7 reasons={'missing_title': 4, 'duplicate': 3}
+2026-11-14 17:05:11,261 | INFO | src.validation.validate | interactions: in=100050 valid=99870 rejected=180 reasons={'duplicate': 50, 'invalid_rating': 30, 'invalid_timestamp': 30, 'orphan_item': 20, 'missing_rating': 20, 'orphan_user': 20, 'bad_dtype': 10}
+2026-11-14 17:05:11,262 | INFO | src.validation.validate | Validation report written to C:\Users\HP\Downloads\SEM2\DMML\recommendation-pipeline\reports\validation_report.md
+2026-11-14 17:05:11,422 | INFO | src.preparation.prepare | Imputed release_year (median) for 1 item(s) with missing release date
+2026-11-14 17:05:11,492 | INFO | src.preparation.prepare | Prepared: users=943 items=1682 interactions=99870
+2026-11-14 17:05:11,672 | INFO | src.transformation.transform | Split at 1998-03-07 02:20:24+00:00: train=79897 test=19973
+2026-11-14 17:05:11,672 | INFO | src.transformation.transform | Cold-start in test: 192 users and 67 items not seen in train
+2026-11-14 17:05:11,673 | INFO | src.transformation.transform | User-item matrix (751, 1615), sparsity=0.9341
+2026-11-14 17:05:11,920 | INFO | src.features.build_features | Features built (v1.0, as of 1998-03-07 02:20:24+00:00): users=943 items=1682 interactions=79897
+2026-11-14 17:05:11,920 | INFO | src.features.build_features | Cold users=192, cold items=67, catalog written to reports/feature_catalog.md
+2026-11-14 17:05:14,117 | INFO | src.training.train | Trained popularity baseline (run 2b44161903d04d84b73d948737c0d2d0)
+2026-11-14 17:05:14,297 | INFO | src.training.train | Trained SVD (20 factors, explained variance 0.239, run 9f4300e24da2477b862f7e0f25c844a6)
+2026-11-14 17:05:15,244 | INFO | src.evaluation.evaluate | Evaluating on 95 users, 2863 warm test rows (K=10, relevant = rating >= 4)
+2026-11-14 17:05:15,330 | INFO | src.evaluation.evaluate | popularity_baseline: P@10=0.1105 R@10=0.0867 NDCG@10=0.1381 coverage=0.046 diversity=0.749 RMSE=1.037 MAE=0.834
+2026-11-14 17:05:15,447 | INFO | src.evaluation.evaluate | svd_matrix_factorization: P@10=0.1200 R@10=0.1285 NDCG@10=0.1781 coverage=0.156 diversity=0.725 RMSE=1.150 MAE=0.925
