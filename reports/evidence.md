@@ -1,6 +1,6 @@
 # Evidence
 
-This page maps each assignment requirement to the file or screenshot that proves it. All numbers below come from real runs of the pipeline: one on Ubuntu (7 Nov 2026) and one from a fresh clone on Windows (14 Nov 2026). Both runs gave identical results.
+This page maps each assignment requirement to the file or screenshot that proves it. All numbers below come from real runs of the pipeline:
 
 ## 1. Requirement checklist
 
