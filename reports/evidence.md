@@ -39,7 +39,7 @@ All screenshots are in `reports/screenshots/`.
 
 **Prefect: successful run of the orchestration flow.** All 8 task runs finished in state Completed, in dependency order.
 
-![Prefect run](screenshots/prefect_run.png.png)
+![Prefect run](screenshots/prefect_run.png)
 
 **MLflow: popularity baseline run.** Parameters and metrics (precision@10, recall@10, ndcg@10, coverage, diversity, RMSE, MAE) are logged.
 
